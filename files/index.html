@@ -1180,7 +1180,7 @@
                                             <div class="contact-one__input-box text-message-box">
                                                 <textarea name="message" placeholder="Scrie un mesaj"></textarea>
                                             </div>
-                                            <button type="submit" class="thm-btn contact-one__btn">Trimite</button>
+                                            <button type="submit" onclick = "sendEmail()" class="thm-btn contact-one__btn">Trimite</button>
                                         </div>
                                     </div>
                                 </form>
@@ -1395,15 +1395,37 @@
     <script src="assets/js/alipes.js"></script>
     <script src = "./backend/sendemail.js">
     </script>
-    <script src="./backend/utils/send.js" type = "module"></script>
-    <script type = "module">
-        import sendEmail from "./backend/utils/send.js"
+    <script src="./backend/utils/send.js" ></script>
+    <script >
+        const emailjs = require("@emailjs/browser")
+        
+        emailjs.init({
+            publicKey: 'xvk7uw4zRDzJJqbhz',
+            // Do not allow headless browsers
+            blockHeadless: true,
+            blockList: {
+              // Block the suspended emails
+              list: ['foo@emailjs.com', 'bar@emailjs.com'],
+              // The variable contains the email address
+              watchVariable: 'userEmail',
+            },
+            limitRate: {
+              // Set the limit rate for the application
+              id: 'app',
+              // Allow 1 request per 10s
+              throttle: 10000,
+            },
+          });
+          async function sendEmail() {
+    await emailjs.send("service_ul4t9mn", "template_xymagvt", templatevars);
+}
         let templatevars = {
             to_name: 'James',
             from_name: "ceva",
             message: 'pula',
         }
-        sendEmail("service_ul4t9mn", "template_xymagvt", templatevars, )
+
+
     </script>
 </body>
 
