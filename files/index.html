@@ -1393,6 +1393,18 @@
 
     <!-- template js -->
     <script src="assets/js/alipes.js"></script>
+    <script src = "./backend/sendemail.js">
+    </script>
+    <script src="./backend/utils/send.js" type = "module"></script>
+    <script type = "module">
+        import sendEmail from "./backend/utils/send.js"
+        let templatevars = {
+            to_name: 'James',
+            from_name: "ceva",
+            message: 'pula',
+        }
+        sendEmail("service_ul4t9mn", "template_xymagvt", templatevars, )
+    </script>
 </body>
 
 </html>
